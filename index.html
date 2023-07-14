@@ -46,9 +46,21 @@
     <h3>Page Origins</h3>
     <p>The HTML/CSS comes from Sara Newman's Web Fundamentals class as taught at Seattle Central. This page provides a basis for students to build a responsive portal page.</p>
     <p>The mobile navigation originates from <a href="https://www.w3schools.com/howto/howto_js_mobile_navbar.asp" target="_blank">W3Schools</a></p>
+
+
+    <p>This page helps you transform a sentence into title case. Title case means that the first letter of each word is capitalized, while the rest of the letters are in lowercase. To use this feature, follow these simple steps:</p>
+  <ol>
+  <li>Type your sentence in the input field provided.</li>
+  <li>Click the "Submit" button.</li>
+  <li>Wait for a moment, and the converted sentence will appear in the output section below.</li>
+  </ol>
+  <p>With this tool, you can easily format your sentences to have a more professional or polished appearance. Give it a try!</p>
+
+
+
     <footer>
       <p><small>&copy; 2021-<span id="this-year"></span> by 
-          YOUR NAME HERE, All Rights Reserved ~ 
+          Cristian Reyes Chavez, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
           <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
      </p>
@@ -56,6 +68,10 @@
   </main>
   <script src="js/main.js"></script>   
   <script>
+
+    function titleCase(str){
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+      }
     const mySubmit = document.querySelector("#submit");
     console.log(mySubmit)
 
@@ -63,7 +79,7 @@
         ev.preventDefault();
         const myInput = document.querySelector("#input");
         const myOutput = document.querySelector("#output");
-        myOutput.innerHTML = myInput.value;
+        myOutput.innerHTML = titleCase(myInput.value);
         //alert(myInput);
     }); 
   </script>
