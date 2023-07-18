@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>Title Case</title>
+     <title>Get Even</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/forms.css">
   <style>
-    #output{
+    #container{
         border-radius:5px;
         min-height:40px;
         border: 1px solid black;
@@ -20,7 +20,7 @@
  </head>
  <body>
      <header>
-     <h1 class="page-header">Form Template</h1>
+     <h1 class="page-header">Get Even</h1>
         <nav class="topnav" id="myTopnav">
             <a href="index.html" class="active">Home</a>
             <a href="#">Link</a>
@@ -32,8 +32,8 @@
    <main class="wrapper">
  
     <h2 class="subheader">Place form code below:</h2>
-    <div id="output">Output goes here</div>
-    <form method="post" action="" class="main-form">
+    <div id="output">
+    <form method="get" action="" class="main-form">
       <div>
         <label for="input">input</label><br>
         <input type="text" name="input" id="input" placeholder="input" requiredAutofocus>
@@ -41,21 +41,11 @@
       <div>
         <input type="submit" id="submit">
       </div>
-     
     </form>
+    </div>
     <h3>Page Origins</h3>
     <p>The HTML/CSS comes from Sara Newman's Web Fundamentals class as taught at Seattle Central. This page provides a basis for students to build a responsive portal page.</p>
     <p>The mobile navigation originates from <a href="https://www.w3schools.com/howto/howto_js_mobile_navbar.asp" target="_blank">W3Schools</a></p>
-
-
-    <p>This page helps you transform a sentence into title case. Title case means that the first letter of each word is capitalized, while the rest of the letters are in lowercase. To use this feature, follow these simple steps:</p>
-  <ol>
-  <li>Type your sentence in the input field provided.</li>
-  <li>Click the "Submit" button.</li>
-  <li>Wait for a moment, and the converted sentence will appear in the output section below.</li>
-  </ol>
-  <p>With this tool, you can easily format your sentences to have a more professional or polished appearance. Give it a try!</p>
-
 
 
     <footer>
@@ -69,19 +59,21 @@
   <script src="js/main.js"></script>   
   <script>
 
-    function titleCase(str){
-      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-      }
-    const mySubmit = document.querySelector("#submit");
-    console.log(mySubmit)
+const queryString = window.location.search;
+console.log(queryString);
 
-    mySubmit.addEventListener("click", function(ev){
-        ev.preventDefault();
-        const myInput = document.querySelector("#input");
-        const myOutput = document.querySelector("#output");
-        myOutput.innerHTML = titleCase(myInput.value);
-        //alert(myInput);
-    }); 
+const urlParams = new URLSearchParams(queryString);
+
+    if(queryString.length > 0){//data submitted
+      let myOutput = `<div id="container">`;
+       if(urlParams.has("input")){
+         //alert(urlParams.get("input"));
+         let myInput = urlParams.get("input");
+         myOutput += `<p>You typed ${myInput}</p>`;
+       }
+       myOutput += `</div>`;
+       document.querySelector("#output").innerHTML = myOutput;
+    }
   </script>
  </body>
 </html>
