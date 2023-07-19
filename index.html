@@ -16,6 +16,7 @@
         width: 50%;
         font-size:x-large;
     }
+
   </style>
  </head>
  <body>
@@ -27,9 +28,12 @@
             <a href="#">Link</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
         </nav>
+
      </header>
-     
    <main class="wrapper">
+  <h2>What is Get Even?</h2>  
+    <p class="page-description">Welcome to Get Even! This page allows you to determine whether a number is even or odd. Simply enter a number in the input field below, and click the submit button to get the result.</p>
+     
  
     <h2 class="subheader">Place form code below:</h2>
     <div id="output">
@@ -59,6 +63,14 @@
   <script src="js/main.js"></script>   
   <script>
 
+    function getEven(num){
+      if(num % 2==0){//even!
+        return true;
+      }else{
+        return false;
+      }
+    }
+
 const queryString = window.location.search;
 console.log(queryString);
 
@@ -69,8 +81,16 @@ const urlParams = new URLSearchParams(queryString);
        if(urlParams.has("input")){
          //alert(urlParams.get("input"));
          let myInput = urlParams.get("input");
-         myOutput += `<p>You typed ${myInput}</p>`;
+
+        if(getEven(myInput)){//even
+          myOutput += `<p>You typed <b>${myInput}</b> and it's an even number!</p>`;
+        }else{//odd
+          myOutput += `<p>You typed <b>${myInput}</b> and it's an odd number!</p>`;
+        }
+        
        }
+
+       myOutput += `<p><a href="index.html">CLEAR</a></p>`;
        myOutput += `</div>`;
        document.querySelector("#output").innerHTML = myOutput;
     }
